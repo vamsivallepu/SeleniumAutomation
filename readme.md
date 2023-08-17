@@ -21,7 +21,7 @@ Before running the automation script, ensure you have the following:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/vamsivallepu/selenium-automation.git
+   git clone https://github.com/vamsivallepu/SeleniumAutomation.git
    ```
 2. Open the project in your C# development environment (e.g., Visual Studio).
 
