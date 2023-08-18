@@ -35,21 +35,21 @@ Before running the automation script, ensure you have the following:
 
 2. You can Customize the script to interact with other elements on the web page. The automation script demonstrates the following actions:
 
-    i. Filling the first name field.
+    i. Filling the first text field.
     ```java 
-    IWebElement nameField = driver.FindElement(By.Id("fname"));
-    nameField.SendKeys("John Doe");
+    IWebElement textField = wait.Until(driver => driver.FindElement(By.CssSelector("input[type='text']")));
+    textField.SendKeys("Test Text");
     ```
-    ii. Selecting the Gender radio button (in this case, the first radio button):
+    ii. Selecting the first option from the Country dropdown (the first `<select>` element and its first option):
     ```java
-    IWebElement genderRadio = driver.FindElement(By.Id("male"));
-    genderRadio.Click();
+    IWebElement selectElement = wait.Until(driver => driver.FindElement(By.TagName("select")));
+    SelectElement select = new SelectElement(selectElement);
+    select.SelectByIndex(1);
     ```
-    iii. Selecting the Country dropdown option (in this case, selecting "India"):
+    iii. Selecting the first radio button
     ```java
-    IWebElement countryDropdown = driver.FindElement(By.Id("continents"));
-    SelectElement selectElement = new SelectElement(countryDropdown);
-    selectElement.SelectByText("India");
+    IWebElement firstRadioButton = wait.Until(driver => driver.FindElement(By.CssSelector("input[type='radio']")));
+    firstRadioButton.Click();
     ```
 3. Build and run the project. 
 4. The automation script will execute and interact with the specified web page. 

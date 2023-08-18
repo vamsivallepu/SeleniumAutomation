@@ -17,30 +17,33 @@ namespace SeleniumAutomation
 
             try
             {
-                // Find and fill the Name field
-                IWebElement nameField = driver.FindElement(By.Id("fname"));
-                nameField.SendKeys("Vamsi Krishna");
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+                // Find the input field of type "text"
+                IWebElement textField = wait.Until(driver => driver.FindElement(By.CssSelector("input[type='text']")));
+
+                // Fill the input field with some text
+                textField.SendKeys("Test Text");
 
                 System.Threading.Thread.Sleep(2000);
 
-                // Find and select Gender radio button
-                IWebElement genderRadio = driver.FindElement(By.Id("male"));
-                genderRadio.Click();
+
+                IWebElement firstRadioButton = wait.Until(driver => driver.FindElement(By.CssSelector("input[type='radio']")));
+
+                // Test the first radio button
+                firstRadioButton.Click();
 
                 System.Threading.Thread.Sleep(2000);
 
-                // Find the Country dropdown
-                IWebElement countryDropdown = driver.FindElement(By.Id("state"));
+                // Select the first occuring select tag in the page
+                IWebElement selectElement = wait.Until(driver => driver.FindElement(By.TagName("select")));
 
-                // Select "India" from the dropdown
-                SelectElement selectElement = new SelectElement(countryDropdown);
-                selectElement.SelectByText("India");
-
-
-                // Add more test steps as needed
+                // Select the first option from the dropdown
+                SelectElement select = new SelectElement(selectElement);
+                select.SelectByIndex(1);
 
                 // Sleep for a while to see the result (for demonstration purposes)
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(2000);
 
             }
             catch (Exception e)
